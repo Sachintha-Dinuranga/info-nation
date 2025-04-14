@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -31,6 +32,7 @@ const Register = () => {
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Registration failed");
 
+      toast.success("Registration successful! Please log in."); // ✅ show success toast
       navigate("/login");
     } catch (err) {
       setError(err.message);
