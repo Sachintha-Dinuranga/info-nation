@@ -1,7 +1,9 @@
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
+import cors from "cors";
 import cookieParser from "cookie-parser";
+import authRoutes from "./routes/authRoutes.js";
 
 dotenv.config();
 const app = express();
@@ -12,8 +14,10 @@ app.use(express.json());
 // Enable cookie parsing
 app.use(cookieParser());
 
-// Routes
+app.use(cors());
 
+// Routes
+app.use("/api/auth", authRoutes);
 // Start the server
 const PORT = process.env.PORT || 5000;
 
@@ -22,7 +26,7 @@ app.listen(PORT, () => {
 });
 
 // Connecting to MONGODB
-const mongoURI = process.env.MONGODB_URL;
+const mongoURI = process.env.MONGO_URI;
 mongoose
   .connect(mongoURI)
   .then(() => console.log("Connected to MongoDB"))
