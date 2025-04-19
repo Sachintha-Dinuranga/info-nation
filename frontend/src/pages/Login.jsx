@@ -74,6 +74,14 @@ const Login = () => {
         >
           Login
         </button>
+        <div className="">
+          <p>
+            Don't have an account{" "}
+            <a href="/register" className="underline text-blue-600">
+              Register
+            </a>
+          </p>
+        </div>
       </form>
     </div>
   );
