@@ -3,35 +3,39 @@ import React from "react";
 import { useEffect, useState } from "react";
 import CountryCard from "../components/CountryCard";
 import SearchBar from "../components/SearchBar";
+import FilterBar from "../components/FilterBar";
 
 const HomePage = () => {
   const [countries, setCountries] = useState([]);
   const [visibleCount, setVisibleCount] = useState(12); // Show 12 initially
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(true);
+  const [region, setRegion] = useState("");
+  const [language, setLanguage] = useState("");
+
+  // fetch all the countries
+  const fetchCountries = async () => {
+    try {
+      const res = await fetch("https://restcountries.com/v3.1/all");
+      const data = await res.json();
+
+      const sorted = data.sort((a, b) =>
+        a.name.common.localeCompare(b.name.common)
+      );
+
+      setCountries(sorted);
+      setLoading(false);
+    } catch (err) {
+      console.error("Failed to fetch countries:", err);
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    const fetchCountries = async () => {
-      try {
-        const res = await fetch("https://restcountries.com/v3.1/all");
-        const data = await res.json();
-
-        // Optional: sort alphabetically for better UX
-        const sorted = data.sort((a, b) =>
-          a.name.common.localeCompare(b.name.common)
-        );
-
-        setCountries(sorted);
-        setLoading(false);
-      } catch (err) {
-        console.error("Failed to fetch countries:", err);
-        setLoading(false);
-      }
-    };
-
     fetchCountries();
   }, []);
 
+  // see more function
   const handleSeeMore = () => {
     setVisibleCount((prev) => prev + 12); // Load 12 more each time
   };
@@ -71,11 +75,78 @@ const HomePage = () => {
     }
   };
 
+  // filter by language
+  const handleLanguageChange = async (e) => {
+    const selectedLang = e.target.value;
+    setLanguage(selectedLang);
+    setRegion("");
+    setSearch("");
+    setVisibleCount(12);
+
+    if (selectedLang === "") {
+      fetchCountries();
+    } else {
+      try {
+        const res = await fetch(
+          `https://restcountries.com/v3.1/lang/${selectedLang}`
+        );
+        if (!res.ok) throw new Error("No results");
+        const data = await res.json();
+        const sorted = data.sort((a, b) =>
+          a.name.common.localeCompare(b.name.common)
+        );
+        setCountries(sorted);
+      } catch (err) {
+        setCountries([]);
+      }
+    }
+  };
+
+  // filter by region
+  const handleRegionChange = async (e) => {
+    const selectedRegion = e.target.value;
+    setRegion(selectedRegion);
+    setLanguage(""); // reset language
+    setSearch("");
+    setVisibleCount(12);
+
+    if (selectedRegion === "") {
+      fetchAllCountries();
+    } else {
+      try {
+        const res = await fetch(
+          `https://restcountries.com/v3.1/region/${selectedRegion}`
+        );
+        const data = await res.json();
+        setCountries(data);
+      } catch (err) {
+        setCountries([]);
+      }
+    }
+  };
+
+  // clear fileter
+  const handleClearFilters = () => {
+    setSearch("");
+    setRegion("");
+    setLanguage("");
+    setVisibleCount(12);
+    fetchCountries(); // restore the original data
+  };
+
   return (
     <div className="p-6 bg-gray-100 min-h-screen">
       <h2 className="text-2xl font-bold mb-6 text-center">Explore Countries</h2>
 
       <SearchBar value={search} onChange={handleSearchChange} />
+
+      <FilterBar
+        onRegionChange={handleRegionChange}
+        onLanguageChange={handleLanguageChange}
+        selectedRegion={region}
+        selectedLanguage={language}
+        onClearFilters={handleClearFilters}
+      />
 
       <div className="flex flex-wrap justify-center gap-6">
         {visibleCountries.map((country) => (
