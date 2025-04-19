@@ -2,10 +2,12 @@ import React from "react";
 
 import { useEffect, useState } from "react";
 import CountryCard from "../components/CountryCard";
+import SearchBar from "../components/SearchBar";
 
 const HomePage = () => {
   const [countries, setCountries] = useState([]);
   const [visibleCount, setVisibleCount] = useState(12); // Show 12 initially
+  const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -40,9 +42,40 @@ const HomePage = () => {
     return <p className="text-center mt-10 text-lg">Loading countries...</p>;
   }
 
+  // search function
+  const handleSearchChange = async (e) => {
+    const query = e.target.value;
+    setSearch(query);
+    setVisibleCount(12);
+
+    if (query.trim() === "") {
+      // Refetch all countries
+      const res = await fetch("https://restcountries.com/v3.1/all");
+      const data = await res.json();
+      const sorted = data.sort((a, b) =>
+        a.name.common.localeCompare(b.name.common)
+      );
+      setCountries(sorted);
+    } else {
+      try {
+        const res = await fetch(`https://restcountries.com/v3.1/name/${query}`);
+        if (!res.ok) throw new Error("No results found");
+        const data = await res.json();
+        const sorted = data.sort((a, b) =>
+          a.name.common.localeCompare(b.name.common)
+        );
+        setCountries(sorted);
+      } catch (err) {
+        setCountries([]); // Empty result
+      }
+    }
+  };
+
   return (
     <div className="p-6 bg-gray-100 min-h-screen">
       <h2 className="text-2xl font-bold mb-6 text-center">Explore Countries</h2>
+
+      <SearchBar value={search} onChange={handleSearchChange} />
 
       <div className="flex flex-wrap justify-center gap-6">
         {visibleCountries.map((country) => (
