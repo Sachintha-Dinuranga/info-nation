@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import CountryCard from "../components/CountryCard";
 import SearchBar from "../components/SearchBar";
 import FilterBar from "../components/FilterBar";
+import PageWrapper from "../components/PageWrapper";
 
 const HomePage = () => {
   const [countries, setCountries] = useState([]);
@@ -135,36 +136,40 @@ const HomePage = () => {
   };
 
   return (
-    <div className="p-6 bg-gray-100 min-h-screen">
-      <h2 className="text-2xl font-bold mb-6 text-center">Explore Countries</h2>
+    <PageWrapper>
+      <div className="p-6 min-h-screen bg-sky-100">
+        <h2 className="text-2xl font-bold mb-6 text-center">
+          Explore Countries
+        </h2>
 
-      <SearchBar value={search} onChange={handleSearchChange} />
+        <SearchBar value={search} onChange={handleSearchChange} />
 
-      <FilterBar
-        onRegionChange={handleRegionChange}
-        onLanguageChange={handleLanguageChange}
-        selectedRegion={region}
-        selectedLanguage={language}
-        onClearFilters={handleClearFilters}
-      />
+        <FilterBar
+          onRegionChange={handleRegionChange}
+          onLanguageChange={handleLanguageChange}
+          selectedRegion={region}
+          selectedLanguage={language}
+          onClearFilters={handleClearFilters}
+        />
 
-      <div className="flex flex-wrap justify-center gap-6">
-        {visibleCountries.map((country) => (
-          <CountryCard key={country.cca3} country={country} />
-        ))}
-      </div>
-
-      {visibleCount < countries.length && (
-        <div className="text-center mt-8">
-          <button
-            onClick={handleSeeMore}
-            className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition"
-          >
-            See More
-          </button>
+        <div className="flex flex-wrap justify-center gap-6">
+          {visibleCountries.map((country) => (
+            <CountryCard key={country.cca3} country={country} />
+          ))}
         </div>
-      )}
-    </div>
+
+        {visibleCount < countries.length && (
+          <div className="text-center mt-8">
+            <button
+              onClick={handleSeeMore}
+              className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition"
+            >
+              See More
+            </button>
+          </div>
+        )}
+      </div>
+    </PageWrapper>
   );
 };
 
