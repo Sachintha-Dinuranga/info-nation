@@ -1,15 +1,20 @@
-import React from "react";
+import { FiSearch } from "react-icons/fi";
 
 const SearchBar = ({ value, onChange }) => {
   return (
     <div className="flex justify-center mb-6">
-      <input
-        type="text"
-        placeholder="Search for a country..."
-        value={value}
-        onChange={onChange}
-        className="w-full max-w-md px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
-      />
+      <div className="relative w-full max-w-md">
+        <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">
+          <FiSearch />
+        </span>
+        <input
+          type="text"
+          value={value}
+          onChange={onChange}
+          placeholder="Search for a country..."
+          className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+        />
+      </div>
     </div>
   );
 };

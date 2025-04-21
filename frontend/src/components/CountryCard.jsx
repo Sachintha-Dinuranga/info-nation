@@ -1,10 +1,9 @@
-import React from "react";
 import { Link } from "react-router-dom";
 
 const CountryCard = ({ country }) => {
   return (
     <Link to={`/country/${country.cca3}`} className="w-full sm:w-64">
-      <div className="bg-white rounded-xl shadow-md p-4 w-full sm:w-64">
+      <div className="bg-white rounded-xl shadow-md p-4 transition transform duration-300 hover:scale-105 hover:shadow-xl hover:-translate-y-1 hover:ring-2 hover:ring-blue-400">
         <img
           src={country.flags.svg}
           alt={`${country.name.common} flag`}
