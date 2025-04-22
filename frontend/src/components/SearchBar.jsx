@@ -1,5 +1,6 @@
 import { FiSearch } from "react-icons/fi";
 
+// SearchBar component to render a search input field with an icon
 const SearchBar = ({ value, onChange }) => {
   return (
     <div className="flex justify-center mb-6">
@@ -9,8 +10,8 @@ const SearchBar = ({ value, onChange }) => {
         </span>
         <input
           type="text"
-          value={value}
-          onChange={onChange}
+          value={value} // Controlled input value passed as a prop
+          onChange={onChange} // Event handler for input changes passed as a prop
           placeholder="Search for a country..."
           className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
         />

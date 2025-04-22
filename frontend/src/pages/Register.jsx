@@ -90,7 +90,7 @@ const Register = () => {
 
           <button
             type="submit"
-            className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg font-medium transition"
+            className="w-full bg-gradient-to-r from-indigo-500 to-blue-500 hover:bg-blue-700 text-white py-2 rounded-lg font-medium transition"
           >
             Register
           </button>
@@ -98,7 +98,7 @@ const Register = () => {
       </div>
 
       {/* Right Side: Art / Text */}
-      <div className="hidden md:flex flex-col items-center justify-center bg-gradient-to-br from-purple-500 to-indigo-600 text-white p-10 text-center">
+      <div className="hidden md:flex flex-col items-center justify-center  bg-gradient-to-br from-blue-500 to-indigo-600 text-white p-10 text-center">
         <img
           src="/src/assests/register.svg"
           alt="Globe illustration"

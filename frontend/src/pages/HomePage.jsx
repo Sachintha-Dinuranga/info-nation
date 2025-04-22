@@ -137,9 +137,9 @@ const HomePage = () => {
 
   return (
     <PageWrapper>
-      <div className="p-6 min-h-screen bg-sky-100">
+      <div className="p-6 min-h-screen bg-white">
         <h2 className="text-2xl font-bold mb-6 text-center">
-          Explore Countries
+          Explore Countries🌍
         </h2>
 
         <SearchBar value={search} onChange={handleSearchChange} />
