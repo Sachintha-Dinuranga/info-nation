@@ -31,11 +31,3 @@ mongoose
   .connect(mongoURI)
   .then(() => console.log("Connected to MongoDB"))
   .catch((err) => console.error("Error connecting to MongoDB:", err));
-
-// if (process.env.NODE_ENV !== "test") {
-//   mongoose.connect(process.env.MONGO_URI).then(() => {
-//     app.listen(process.env.PORT || 5000, () => {
-//       console.log("Server running");
-//     });
-//   });
-// }

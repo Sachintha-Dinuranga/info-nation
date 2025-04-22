@@ -25,11 +25,11 @@
   - View details about a country, including:
     Name, Capital, Region, Population, Flag, and Languages. - Done
   - Search and filter: - Done
-    - Users should be able to search for a country by name.
-    - Users should be able to filter countries by region or language.
-    - Click on a country to view more details (optional but recommended).
-    - (Optional) Add login functionality:
-    - If you want, you can add user authentication so users can log
+    - Users should be able to search for a country by name. - Done
+    - Users should be able to filter countries by region or language. - Done
+    - Click on a country to view more details (optional but recommended). -
+    - (Optional) Add login functionality: - Done
+    - If you want, you can add user authentication so users can log - Done
 
 ## end
 
