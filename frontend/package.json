@@ -12,6 +12,7 @@
   "dependencies": {
     "flowbite": "^3.1.2",
     "framer-motion": "^12.7.4",
+    "lottie-react": "^2.4.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-hot-toast": "^2.5.2",
