@@ -1,6 +1,13 @@
 import { Link, useNavigate } from "react-router-dom";
 import { isAuthenticated } from "../utils/auth";
-import { FiLogIn, FiLogOut, FiUserPlus, FiGlobe } from "react-icons/fi";
+
+import {
+  FiLogIn,
+  FiLogOut,
+  FiUserPlus,
+  FiGlobe,
+  FiHeart,
+} from "react-icons/fi";
 
 const Navbar = () => {
   // useNavigate hook to programmatically navigate between routes
@@ -27,6 +34,14 @@ const Navbar = () => {
 
         {/* Nav Buttons */}
         <div className="space-x-5 text-sm font-medium">
+          <Link
+            to="/favourites"
+            className="inline-flex items-center gap-1 hover:text-pink-300 transition"
+          >
+            <FiHeart />
+            Favourites
+          </Link>
+
           {!auth ? (
             <>
               <Link

@@ -9,6 +9,7 @@ import { AnimatePresence } from "framer-motion";
 import PrivateRoute from "./components/PrivateRoute";
 import Navbar from "./components/Navbar";
 import LoadingSpinner from "./components/LoadingSpinner";
+import Favourites from "./pages/Favorites";
 
 // Lazy-loaded pages
 const HomePage = lazy(() => import("./pages/HomePage"));
@@ -44,6 +45,14 @@ const App = () => {
               element={
                 <PrivateRoute>
                   <CountryDetails />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/favourites"
+              element={
+                <PrivateRoute>
+                  <Favourites />
                 </PrivateRoute>
               }
             />
