@@ -1,5 +1,9 @@
-import { Link, useNavigate } from "react-router-dom";
-import { isAuthenticated } from "../utils/auth";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+// import { isAuthenticated } from "../utils/auth";
+import { auth } from "../firebase";
+import { signOut } from "firebase/auth";
+import { useAuthState } from "react-firebase-hooks/auth";
+import toast from "react-hot-toast";
 
 import {
   FiLogIn,
@@ -12,11 +16,13 @@ import {
 const Navbar = () => {
   // useNavigate hook to programmatically navigate between routes
   const navigate = useNavigate();
-  const auth = isAuthenticated();
+  const [user] = useAuthState(auth); // Get the current user
+  const location = useLocation(); // Get the current route
 
   // Function to handle user logout
-  const handleLogout = () => {
-    localStorage.removeItem("token"); // Removing the authentication token from localStorage
+  const handleLogout = async () => {
+    await signOut(auth);
+    toast.success("Logged out successfully!");
     navigate("/login"); // Redirecting the user to the login page
   };
 
@@ -34,15 +40,18 @@ const Navbar = () => {
 
         {/* Nav Buttons */}
         <div className="space-x-5 text-sm font-medium">
-          <Link
-            to="/favourites"
-            className="inline-flex items-center gap-1 hover:text-pink-300 transition"
-          >
-            <FiHeart />
-            Favourites
-          </Link>
+          {location.pathname !== "/login" &&
+            location.pathname !== "/register" && (
+              <Link
+                to="/favourites"
+                className="inline-flex items-center gap-1 hover:text-pink-300 transition"
+              >
+                <FiHeart />
+                Favourites
+              </Link>
+            )}
 
-          {!auth ? (
+          {!user ? (
             <>
               <Link
                 to="/login"
