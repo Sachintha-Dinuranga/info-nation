@@ -1,5 +1,4 @@
 import React from "react";
-
 import { useEffect, useState } from "react";
 import CountryCard from "../components/CountryCard";
 import SearchBar from "../components/SearchBar";

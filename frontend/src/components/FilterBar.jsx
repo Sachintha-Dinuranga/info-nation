@@ -1,4 +1,5 @@
 import Select from "react-select";
+import React from "react";
 
 const regions = ["Africa", "Americas", "Asia", "Europe", "Oceania"];
 

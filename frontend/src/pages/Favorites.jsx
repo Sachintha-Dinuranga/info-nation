@@ -1,5 +1,6 @@
 import { useFavorites } from "../context/FavoritesContext";
 import CountryCard from "../components/CountryCard";
+import React from "react";
 
 const Favourites = () => {
   const { favorites } = useFavorites();

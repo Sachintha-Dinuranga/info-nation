@@ -4,6 +4,7 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase";
 import toast from "react-hot-toast";
 import { FiLogIn } from "react-icons/fi";
+import React from "react";
 
 const Login = () => {
   const navigate = useNavigate();
