@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../firebase";
 import toast from "react-hot-toast";
 import { FiLogIn } from "react-icons/fi";
 
@@ -21,16 +22,7 @@ const Login = () => {
     setError("");
 
     try {
-      const res = await fetch("http://localhost:5000/api/auth/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
-
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error || "Login failed");
-
-      localStorage.setItem("token", data.token);
+      await signInWithEmailAndPassword(auth, formData.email, formData.password);
       toast.success("Login successful!");
       navigate("/");
     } catch (err) {
@@ -38,7 +30,6 @@ const Login = () => {
       toast.error(err.message);
     }
   };
-
   return (
     <div className="min-h-screen grid grid-cols-1 md:grid-cols-2">
       {/* Left Side: Login Form */}

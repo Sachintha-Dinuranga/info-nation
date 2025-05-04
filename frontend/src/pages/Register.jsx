@@ -1,14 +1,13 @@
-//
-
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import toast from "react-hot-toast";
+import { auth } from "../firebase";
 import { FiUserPlus } from "react-icons/fi";
 
 const Register = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    username: "",
     email: "",
     password: "",
   });
@@ -26,15 +25,11 @@ const Register = () => {
     setError("");
 
     try {
-      const res = await fetch("http://localhost:5000/api/auth/register", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
-
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error || "Registration failed");
-
+      await createUserWithEmailAndPassword(
+        auth,
+        formData.email,
+        formData.password
+      );
       toast.success("Registration successful! You can now login.");
       navigate("/login");
     } catch (err) {
@@ -55,16 +50,6 @@ const Register = () => {
             <FiUserPlus className="text-blue-600" />
             Create an Account
           </h2>
-
-          <input
-            type="text"
-            name="username"
-            value={formData.username}
-            onChange={handleChange}
-            placeholder="Username"
-            className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-            required
-          />
 
           <input
             type="email"
