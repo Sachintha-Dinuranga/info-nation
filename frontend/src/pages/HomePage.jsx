@@ -5,6 +5,7 @@ import SearchBar from "../components/SearchBar";
 import FilterBar from "../components/FilterBar";
 import PageWrapper from "../components/PageWrapper";
 
+// home page
 const HomePage = () => {
   const [countries, setCountries] = useState([]);
   const [visibleCount, setVisibleCount] = useState(12); // Show 12 initially
