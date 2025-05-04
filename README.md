@@ -17,6 +17,7 @@ InfoNation is a React-based web application that allows users to explore informa
     - [4. **Performance Optimization**](#4-performance-optimization)
   - [Setup Instructions](#setup-instructions)
   - [Testing](#testing)
+  - [Hosted Application](#hosted-application)
 
 ---
 
@@ -110,3 +111,7 @@ InfoNation is a React-based web application that allows users to explore informa
 ```bash
     npm run test
 ```
+
+## Hosted Application
+
+[InfoNation](https://www.codecademy.com/pages/contribute-docs)!
