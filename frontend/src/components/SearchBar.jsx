@@ -1,4 +1,5 @@
 import { FiSearch } from "react-icons/fi";
+import React from "react";
 
 // SearchBar component to render a search input field with an icon
 const SearchBar = ({ value, onChange }) => {

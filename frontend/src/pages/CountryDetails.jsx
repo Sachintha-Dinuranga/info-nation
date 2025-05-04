@@ -10,6 +10,7 @@ import {
   FiArrowLeftCircle,
   FiExternalLink,
 } from "react-icons/fi";
+import React from "react";
 
 const CountryDetails = () => {
   const { code } = useParams();
