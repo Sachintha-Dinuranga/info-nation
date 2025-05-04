@@ -4,6 +4,7 @@ import { auth } from "../firebase";
 import { signOut } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
 import toast from "react-hot-toast";
+import React from "react";
 
 import {
   FiLogIn,

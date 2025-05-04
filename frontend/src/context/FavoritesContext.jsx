@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect } from "react";
-
+import React from "react";
 const FavoritesContext = createContext();
 
 export const FavoritesProvider = ({ children }) => {

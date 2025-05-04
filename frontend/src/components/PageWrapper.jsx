@@ -1,3 +1,4 @@
+import React from "react";
 import { motion } from "framer-motion";
 
 // Defining animation variants for the page transitions

@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { FiGlobe, FiMapPin, FiUsers, FiHeart } from "react-icons/fi";
 import { AiFillHeart } from "react-icons/ai";
 import { useFavorites } from "../context/FavoritesContext";
+import React from "react";
 
 const CountryCard = ({ country }) => {
   const { addFavorite, removeFavorite, isFavorite } = useFavorites();
